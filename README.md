@@ -20,7 +20,7 @@ CashFlow is a **smart and responsive** budget calculator that helps users track 
 ## 📦 Installation & Usage
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/cashflow.git
+   https://github.com/Prabathunni/CashFlow-BudgetCalculator.git
    ```
 2. Open the `index.html` file in your browser.
 
