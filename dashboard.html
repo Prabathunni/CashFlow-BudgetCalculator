@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CashFlow</title>
+
+<!-- bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<!-- fontaws cdn -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- favicon --> 
+<link rel="icon" type="image/png" href="./images/favicon.png">
+
+<!-- stycle css -->
+ <link rel="stylesheet" href="./style.css">
+
+
+</head>
+<body class="bg-light">
+
+
+<!-- head -->
+
+<h1 class="text-center text-primary p-2">CashFlow </h1>
+
+<!-- welcome user and logout header-->
+
+  <div class="container text-dark rounded shadow mt-3 mb-3 border border-dark border-3 d-flex flex-wrap justify-content-between p-3">
+
+    <div class="d-flex justify-content-center align-items-center gap-2 ">
+      <i class="fa-solid fa-user fa-lg" style="color: #000000;"></i>
+      <h2 id="welcomeuser" class="text-truncate text-break" style="max-width: 100%;">Welcome</h2>    
+    </div>
+        <div class="d-flex flex-wrap gap-3 flex-column flex-sm-row">
+          <button class="btn btn-warning headbutton" onclick="clearUserData()">Clear Data <i class="fa-solid fa-eraser" style="color: #000000;"></i></button>    
+          <button class="btn btn-danger headbutton" onclick="logoutUser()">Logout <i class="fa-solid fa-power-off" style="color: #ffffff;"></i></button>    
+
+        </div>
+  </div>
+
+<!-- main section  -->
+<section class="container d-flex flex-column flex-md-row justify-content-between align-items-stretch w-100 gap-4">
+
+  <div class="w-50 d-flex flex-column">
+    <div class="text-dark  p-3 rounded mt-4 text-center shadow input-section">
+      <h3>Add Income</h3>
+      <br>
+      <input type="text" id="inctype" class="form-control w-100 mb-3 " placeholder="Enter Income Type">
+      <input type="number" id="incamount" class="form-control w-100 mb-3" placeholder="Enter Amount">
+      <p class="text-center text-danger" id="incomewarning"></p>
+
+      <button class="btn btn-primary w-100" onclick="addIncome()">Add Income</button>
+
+
+    </div>
+  
+    <div class="text-dark p-3 rounded mt-4 text-center shadow input-section">
+      <h3>Add Expense</h3>
+      <br>
+      <input type="text" id="exptype" class="form-control w-100 mb-3" placeholder="Enter Expense Type">
+      <input type="number" id="expamount" class="form-control w-100 mb-3" placeholder="Enter Amount">
+      <p class="text-center text-danger" id="expensewarning"></p>
+
+      <button class="btn btn-success w-100" onclick="addExpense()">Add Expense</button>
+    </div>
+  
+  </div>  
+
+
+ <div class="text-dark p-3 rounded mt-4 text-center  w-75 d-flex justify-content-center align-items-center">
+      <div class="w-100">
+         <div class="balance-section bg-primary p-5 rounded text-light shadow border border-dark border-2">
+           <h1>Total Balance</h1>
+           <h1 id="totalincomeBalance">Rs: 0/-</h1>  
+         </div>
+         <br>
+          <div class="balance-section bg-success p-5 rounded text-light shadow border border-dark border-2">
+              <h1>Total Expense</h1>
+              <h1 id="totalexpenseBalance">Rs: 0/-</h1>    
+          </div>
+      </div>
+</div>
+  
+</section>
+
+
+
+
+
+<!-- 888888888888 income and expense detail section 8888888888888 -->
+<section class="container border shadow rounded border-3 mt-5 incomesection">
+  <h1 class="text-center mt-4 text-primary fw-bold">Income and Expense Details</h1>
+  <br>
+
+
+<div>
+  <div class="d-flex gap-5 flex-column flex-md-row" id="tableSection">
+
+    <!-- income Table -->
+    <div class="mt-4 w-50">
+      <h2 >Income Table</h2>
+      <hr>
+      <table class="table table-bordered table-striped outputTable">
+          <thead class="table-dark">
+              <tr>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th>Balance</th>
+                  <th>Date & Time</th>
+              </tr>
+          </thead>
+          <tbody id="incomeresult">
+  
+          </tbody>
+      </table>
+    </div>
+  
+    <!-- expense table -->
+    <div class="mt-4 w-50">
+      <h2>Expense Table</h2>
+      <hr>
+      <table class="table table-bordered table-striped outputTable">
+          <thead class="table-dark">
+              <tr>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th>Balance</th>
+                  <th>Date & Time</th>
+              </tr>
+          </thead>
+          <tbody id="expenseresult">
+  
+          </tbody>
+      </table>  
+    </div>  
+  
+  </div>
+
+  <button class="btn btn-outline-success mt-3 mb-3" onclick="downloadPDF()">Download PDF</button>
+  <p id="errorMessage"></p>
+
+   
+</div>
+
+
+<hr>
+<!-- piechart section -->
+<h1 class="text-center mt-5 text-dark fw-bold">Pie-Chart</h1>
+<br>
+
+<div class="container d-flex flex-column align-items-center justify-content-center">
+  <button class="btn btn-outline-primary mb-3" onclick="showPieChart()">Show Pie Chart</button>
+
+  <canvas id="expensePieChart"></canvas>
+</div>
+
+</section>
+
+  
+</body>
+<!-- pdf -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="./dashboard.js"></script>
+</html>

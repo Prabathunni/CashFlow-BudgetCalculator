@@ -1,0 +1,44 @@
+ html, body{
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+@media (min-width: 768px) {  /* Medium Screens */
+  .input-section {
+      width: 70%;  
+  }
+  .balance-section {
+      width: 80%;
+  }
+  .headbutton {
+    width: auto !important;
+  }
+
+}
+
+ /* small Screens  -----------------mobile screen*/
+ @media only screen and (max-width: 480px) {
+  .input-section {
+    width: 200%;  
+  }
+ .balance-section {
+     width: 135%;
+  }
+  .outputTable{
+    width: 200%;
+  }
+
+}
+
+
+@media (min-width: 992px) {  /* Large Screens */
+  .input-section {
+      width: 75%;  
+  }
+  .balance-section {
+      width: 100%;
+  }
+}
+
+
+
